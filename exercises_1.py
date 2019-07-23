@@ -240,16 +240,91 @@ for i in characters:
 print(f"Generated password is: {password}")
 
 
-# 17 ###################################################################################################################
+"""" 17 #############################################################################################################"""
+import requests
+from bs4 import BeautifulSoup
 
 
-
-# 18 ###################################################################################################################
-
+path = r"D:\!_Python_trainig\scripts_IS\NYT_data.csv"
 
 
-# 19 ###################################################################################################################
+def data_download():
+    data_url = "https://www.nytimes.com"
+
+    nyt_data = requests.get(data_url)
+    soup = BeautifulSoup(nyt_data.text)
+
+    for story_heading in soup.find_all(class_="story-heading"):
+        if story_heading.a:
+            print(story_heading.a.text.replace("\n", " ").strip())
+        else:
+            print(story_heading.contents[0].strip())
+
+    title = soup.find_all('span', recursive=False, )
+    # print(soup.prettify())
+    print(title)
+
+data_download()
 
 
-# 20 ###################################################################################################################
+soup = BeautifulSoup(requests.get("https://www.nytimes.com"))
+
+
+"""" 18 #############################################################################################################"""
+import random
+
+number = str(random.randint(1000, 9999))
+print(number)
+
+while True:
+    user_guess = input("Guess the number: ")
+    number_of_attempts = 0
+    cowsbulls = [0, 0]
+
+    for i, v in enumerate(number):
+        if len(user_guess) == 4:
+            if i == 0 and v in user_guess[0]:
+                cowsbulls[0] += 1
+            elif i == 1 and v in user_guess[1]:
+                cowsbulls[0] += 1
+            elif i == 2 and v in user_guess[2]:
+                cowsbulls[0] += 1
+            elif i == 3 and v in user_guess[3]:
+                cowsbulls[0] += 1
+            else:
+                cowsbulls[1] += 1
+        else:
+            print(f"You entered incorrect number! Try again!")
+            break
+    number_of_attempts += 1
+
+    if cowsbulls[0] == 4:
+        print(f"Random number: {number}, your score is {cowsbulls[0]} cows & {cowsbulls[1]} bulls.\n "
+              f"End of game.\nYou have take {number_of_attempts} attempts.")
+        break
+    else:
+        print(f"Random number: {number}, your score is {cowsbulls[0]} cows & {cowsbulls[1]} bulls.\n"
+              f"You have take {number_of_attempts} attempts.")
+
+
+"""" 19 #############################################################################################################"""
+"""" 20 #############################################################################################################"""
+"""" 21 #############################################################################################################"""
+"""" 22 #############################################################################################################"""
+
+"""" 33 #############################################################################################################"""
+birthday_dictionary = {"Ala": 22.06, "Piotr": 22.01, "Ania": 26.08, "Wiktoria": 22.01, "Michal": 22.01}
+
+
+def birthday_dict(birthday_dictionary):
+    user_question = (input("Welcome to the birthday dictionary!!! \n"
+                           "Enter name of person who's birthday you want to check: ")).capitalize()
+
+    if user_question in birthday_dictionary.keys():
+        print(f"{user_question}'s birthday is on {birthday_dictionary[user_question]}.")
+    else:
+        print(f"Dictionary don't store birthday date of person named {user_question}.")
+
+
+birthday_dict(birthday_dictionary)
 
