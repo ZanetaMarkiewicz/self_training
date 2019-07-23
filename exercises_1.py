@@ -245,14 +245,10 @@ import requests
 from bs4 import BeautifulSoup
 
 
-path = r"D:\!_Python_trainig\scripts_IS\NYT_data.csv"
-
-
 def data_download():
     data_url = "https://www.nytimes.com"
-
     nyt_data = requests.get(data_url)
-    soup = BeautifulSoup(nyt_data.text)
+    soup = BeautifulSoup(nyt_data.text, "html.parser")
 
     for story_heading in soup.find_all(class_="story-heading"):
         if story_heading.a:
@@ -267,20 +263,16 @@ def data_download():
 data_download()
 
 
-soup = BeautifulSoup(requests.get("https://www.nytimes.com"))
-
-
 """" 18 #############################################################################################################"""
 import random
 
 number = str(random.randint(1000, 9999))
 print(number)
+number_of_guesses = 0
 
 while True:
     user_guess = input("Guess the number: ")
-    number_of_attempts = 0
     cowsbulls = [0, 0]
-
     for i, v in enumerate(number):
         if len(user_guess) == 4:
             if i == 0 and v in user_guess[0]:
@@ -296,20 +288,39 @@ while True:
         else:
             print(f"You entered incorrect number! Try again!")
             break
-    number_of_attempts += 1
+    number_of_guesses += 1
 
     if cowsbulls[0] == 4:
-        print(f"Random number: {number}, your score is {cowsbulls[0]} cows & {cowsbulls[1]} bulls.\n "
-              f"End of game.\nYou have take {number_of_attempts} attempts.")
+        print(f"Random number: {number}, your score is {cowsbulls[0]} cows & {cowsbulls[1]} bulls.\n"
+              f"End of game.\n"
+              f"You have taken {number_of_guesses} attempts.")
         break
     else:
         print(f"Random number: {number}, your score is {cowsbulls[0]} cows & {cowsbulls[1]} bulls.\n"
-              f"You have take {number_of_attempts} attempts.")
+              f"You have taken {number_of_guesses} attempts.")
 
 
 """" 19 #############################################################################################################"""
 """" 20 #############################################################################################################"""
+def number_search():
+    number_list = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+    user_number = int(input("Enter number: "))
+
+    if user_number in number_list:
+        return True
+    else:
+        return False
+
+
+print(f"Given number availability on the list = {number_search()}")
+
+
 """" 21 #############################################################################################################"""
+import os
+
+os.rename('tekst.txt', 'tekst_2.txt')
+
+
 """" 22 #############################################################################################################"""
 
 """" 33 #############################################################################################################"""
