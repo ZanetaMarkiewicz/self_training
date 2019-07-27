@@ -322,6 +322,79 @@ os.rename('tekst.txt', 'tekst_2.txt')
 
 
 """" 22 #############################################################################################################"""
+path = r"C:\Users\zanet\PycharmProjects\self_training\a.txt"
+
+with open(path, "r") as file_with_names:
+    initial_list = [line.rstrip('\n') for line in file_with_names.readlines()]
+    print(initial_list)
+
+    final_list = {}
+
+    for i in initial_list:
+        if i in final_list:
+            final_list[i] += 1
+        else:
+            final_list[i] = 1
+
+    for k, v in final_list.items():
+        print(f"{k} - {v}")
+
+
+"""" 23 #############################################################################################################"""
+path_one = r"C:\Users\zanet\PycharmProjects\self_training\one.txt"
+path_two = r"C:\Users\zanet\PycharmProjects\self_training\two.txt"
+
+with open(path_one, "r") as file_one:
+    list_one = [line.rstrip('\n') for line in file_one.readlines()]
+    print(list_one, "\n================")
+
+with open(path_two, "r") as file_two:
+    list_two = [line.rstrip('\n') for line in file_two.readlines()]
+    print(list_two, "\n================")
+
+overlaps = []
+
+for i in list_one:
+    if i in list_two:
+        overlaps.append(i)
+print(overlaps)
+
+
+"""" 24 #############################################################################################################"""
+board_game = (input("what type of board game do you want to play: ")).upper()
+
+if board_game == "TIC TAC TOE":
+    print((3 * "-" + "\n" + 4 * "|" + "\n")*3 + 3 * "-")
+elif board_game == "CHESS":
+    print((9 * "-" + "\n" + 8 * "|" + "\n")*9 + 9 * "-")
+elif board_game == "GO":
+    print((19 * "-" + "\n" + 18 * "|" + "\n")*19 + 19 * "-")
+else:
+    print("Incorrect board game name !!!")
+
+
+"""" 25 #############################################################################################################"""
+import random
+
+user_number = int(input("my number: "))
+
+# comp_guess = random.choice(range(1,100))
+# print(comp_guess)
+
+
+if user_number >= 50:
+    comp_guess = random.choice(range(50,100))
+    print(comp_guess)
+    if user_number == comp_guess:
+        print("yes", comp_guess)
+elif user_number < 50:
+    comp_guess = random.choice(range(0, 50))
+    print(comp_guess)
+    if user_number == comp_guess:
+        print("yes", comp_guess)
+else:
+    print("nothing")
+
 
 """" 33 #############################################################################################################"""
 birthday_dictionary = {"Ala": 22.06, "Piotr": 22.01, "Ania": 26.08, "Wiktoria": 22.01, "Michal": 22.01}
