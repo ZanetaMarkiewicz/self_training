@@ -378,22 +378,13 @@ import random
 
 user_number = int(input("my number: "))
 
-# comp_guess = random.choice(range(1,100))
-# print(comp_guess)
-
-
-if user_number >= 50:
-    comp_guess = random.choice(range(50,100))
-    print(comp_guess)
+while True:
+    comp_guess = random.choice(range(1, 100))
     if user_number == comp_guess:
-        print("yes", comp_guess)
-elif user_number < 50:
-    comp_guess = random.choice(range(0, 50))
-    print(comp_guess)
-    if user_number == comp_guess:
-        print("yes", comp_guess)
-else:
-    print("nothing")
+        print(f"yes!!! {comp_guess}")
+        break
+    else:
+        print(f"no!!! {comp_guess}")
 
 
 """" 33 #############################################################################################################"""
